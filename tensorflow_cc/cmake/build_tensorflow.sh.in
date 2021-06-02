@@ -102,6 +102,9 @@ JVM_RAM_RESOURCES=$((${JVM_RAM_RESOURCES} < 1024 ? 1024 : ${JVM_RAM_RESOURCES}))
 bazel --host_jvm_args="-Xmx${JVM_RAM_RESOURCES}m" \
       build --config=opt \
             --config=monolithic \
+            --copt=-mavx \
+            --copt=-mavx2 \
+            --copt=-mfma \
             --local_ram_resources=@LOCAL_RAM_RESOURCES@ \
             --discard_analysis_cache \
             $cuda_config_opts \
