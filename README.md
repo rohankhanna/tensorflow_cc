@@ -144,6 +144,9 @@ target_link_libraries(example TensorflowCC::TensorflowCC)
 ```
 mkdir build && cd build
 cmake .. && make
+cd /usr/local/lib
+sudo ln -s libtensorflow_cc.so. libtensorflow_cc.so.2 # this is important for the build because the binary that is built looks for this filename specifically
+# the final compiled binary demands libtensorflow_cc.so.2 for some reason. creating a symlink of the file "/usr/local/lib/libtensorflow_cc.so." with the linked filename "/usr/local/lib/libtensorflow_cc.so.2" seems to be a quick fix solution
 ./example 
 ```
 
